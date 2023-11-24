@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+final class TableViewCell: UITableViewCell {
 
     static let indentifier = "TableViewCell"
 
@@ -62,7 +62,7 @@ class TableViewCell: UITableViewCell {
 
     func configure(card: CardInfo) {
         nameLabel.text = card.name
-        manaCostLabel.text = "Mana Cost: \(card.manaCost ?? "")"
+        manaCostLabel.text = "-> Mana Cost: \(card.manaCost ?? "")"
         typeLabel.text = "Type: \(card.type ?? "")"
     }
 }

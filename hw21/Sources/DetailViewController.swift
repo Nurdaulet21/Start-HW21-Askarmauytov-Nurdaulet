@@ -7,14 +7,16 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
 
     var card: CardInfo
 
     private let label: UILabel = {
         let label = UILabel()
         label.textColor = .systemCyan
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = UIFont.systemFont(ofSize: 24)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
 
@@ -27,11 +29,31 @@ class DetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
+        setupConstraint()
+        cardInfo(card: card)
+    }
+
+    private func setupViews() {
+        view.addSubview(label)
         title = card.name
-        label.text = card.setName
         view.backgroundColor = .white
     }
+
+    private func setupConstraint() {
+        label.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(15)
+            make.top.bottom.equalToSuperview()
+            make.right.equalToSuperview().offset(-15)
+        }
+    }
+
+   private func cardInfo(card: CardInfo ) {
+        label.text = card.text
+       }
 }
 
